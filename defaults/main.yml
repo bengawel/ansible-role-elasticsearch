@@ -10,3 +10,5 @@ elasticsearch_config_file_path: /etc/elasticsearch/elasticsearch.yml
 
 elasticsearch_network_host: localhost
 elasticsearch_http_port: 9200
+
+elasticsearch_deployment_environment: development
