@@ -10,10 +10,6 @@
     name: elasticsearch
     state: "{{ elasticsearch_package_state }}"
 
-- name: show variable
-  debug:
-    var: elasticsearch_deployment_environment
-
 - name: Add elasticsearch override settings
   become: yes
   become_user: root
