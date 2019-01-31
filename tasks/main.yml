@@ -10,14 +10,6 @@
     name: elasticsearch
     state: "{{ elasticsearch_package_state }}"
 
-- name: Add elasticsearch override settings
-  become: yes
-  become_user: root
-  copy:
-    src: override.conf
-    dest: /etc/systemd/system/elasticsearch.service.d/override.conf
-  when: elasticsearch_deployment_environment == 'production'
-
 - name: Copy Elasticsearch configuration.
   template:
     src: "{{ elasticsearch_config_template }}"
@@ -35,6 +27,19 @@
     name: elasticsearch
     state: "{{ elasticsearch_service_state }}"
     enabled: "{{ elasticsearch_service_enabled }}"
+
+- name: Add elasticsearch override settings
+  become: yes
+  become_user: root
+  copy:
+    src: override.conf
+    dest: /etc/systemd/system/elasticsearch.service.d/override.conf
+  when: elasticsearch_deployment_environment == 'production'
+
+- name: Reload elastic daemon
+  shell: systemctl daemon-reload
+  become: yes
+  become_user: root
 
 - name: Make sure Elasticsearch is running before proceeding.
   wait_for:
