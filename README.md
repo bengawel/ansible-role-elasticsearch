@@ -38,6 +38,10 @@ Network host to listen for incoming connections on. By default we only listen on
 
 The port to listen for HTTP connections on.
 
+    elasticsearch_deployment_environment: 'development'
+
+Deployment environment for elasticsearch.  If set to 'production' will set necessary elasticsearch production settings.
+
 ## Dependencies
 
   - geerlingguy.java
