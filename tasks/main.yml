@@ -28,6 +28,9 @@
     state: "{{ elasticsearch_service_state }}"
     enabled: "{{ elasticsearch_service_enabled }}"
 
+- name: Ensure elasticsearch override system settings directory exists
+  file: path=/etc/systemd/system/elasticsearch.service.d state=directory
+
 - name: Add elasticsearch override settings
   become: yes
   become_user: root
