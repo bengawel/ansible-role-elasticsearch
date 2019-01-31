@@ -1,7 +1,4 @@
 ---
-- vars:
-  elasticsearch_deployment_environment: "{{ elasticsearch_deployment_environment }}"
-
 - include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
