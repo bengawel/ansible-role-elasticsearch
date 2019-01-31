@@ -1,4 +1,7 @@
 ---
+- name: test
+  debug:
+    msg: "test"
 - vars:
     elasticsearch_deployment_environment: "{{ elasticsearch_deployment_environment }}"
 - include_tasks: setup-RedHat.yml
