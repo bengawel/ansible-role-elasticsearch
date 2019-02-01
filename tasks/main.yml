@@ -19,6 +19,20 @@
     mode: 0660
   notify: restart elasticsearch
 
+- name: Change JVM options for the heap size
+  lineinfile:
+    dest: /etc/elasticsearch/jvm.options
+    regexp: '^-Xms(.*)$'
+    line: '-Xms7g'
+    backrefs: yes
+
+- name: Change JVM options for the heap size
+  lineinfile:
+    dest: /etc/elasticsearch/jvm.options
+    regexp: '-Xmx(.*)$'
+    line: '-Xmx7g'
+    backrefs: yes
+
 - name: Force a restart if configuration has changed.
   meta: flush_handlers
 
@@ -43,6 +57,9 @@
   shell: systemctl daemon-reload
   become: yes
   become_user: root
+
+- name: Restart the machine
+  reboot:
 
 - name: Make sure Elasticsearch is running before proceeding.
   wait_for:
