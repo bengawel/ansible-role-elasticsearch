@@ -47,7 +47,6 @@
 
 - name: Add elasticsearch override settings
   become: yes
-  become_user: root
   copy:
     src: override.conf
     dest: /etc/systemd/system/elasticsearch.service.d/override.conf
@@ -56,7 +55,6 @@
 - name: Reload elastic daemon
   shell: systemctl daemon-reload
   become: yes
-  become_user: root
 
 - name: Restart the machine
   reboot:
@@ -67,3 +65,31 @@
     port: "{{ elasticsearch_http_port }}"
     delay: 3
     timeout: 300
+
+- name: Install metricbeat
+  apt:
+    pkg: metricbeat
+    state: "{{ metricbeat_package_state }}"
+
+- name: Copy Metricbeat configuration file
+  template:
+    src: "{{ metricbeat_config_template }}"
+    dest: "{{ metricbeat_config_file_path }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart metricbeat
+
+- name: Enable elasticsearch
+  shell: metricbeat modules enable elasticsearch
+  become: yes
+
+- name: Setup metricbeat command
+  shell: metricbeat setup
+  become: yes
+
+- name: Start and enable metricbeat
+  service:
+    name: metricbeat
+    state: "{{ metricbeat_service_state }}"
+    enabled: "{{ metricbeat_service_enabled }}"

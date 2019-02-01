@@ -12,3 +12,11 @@ elasticsearch_network_host: localhost
 elasticsearch_http_port: 9200
 
 elasticsearch_deployment_environment: development
+
+metricbeat_package_state: present
+
+metricbeat_service_state: started
+metricbeat_service_enabled: true
+
+metricbeat_config_template: metricbeat.yml.j2
+metricbeat_config_file_path: /etc/metricbeat/metricbeat.yml
