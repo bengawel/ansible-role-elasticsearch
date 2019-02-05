@@ -66,30 +66,30 @@
     delay: 3
     timeout: 300
 
-- name: Install metricbeat
-  apt:
-    pkg: metricbeat
-    state: "{{ metricbeat_package_state }}"
+# - name: Install metricbeat
+#   apt:
+#     pkg: metricbeat
+#     state: "{{ metricbeat_package_state }}"
 
-- name: Copy Metricbeat configuration file
-  template:
-    src: "{{ metricbeat_config_template }}"
-    dest: "{{ metricbeat_config_file_path }}"
-    owner: root
-    group: root
-    mode: 0644
-  notify: restart metricbeat
+# - name: Copy Metricbeat configuration file
+#   template:
+#     src: "{{ metricbeat_config_template }}"
+#     dest: "{{ metricbeat_config_file_path }}"
+#     owner: root
+#     group: root
+#     mode: 0644
+#   notify: restart metricbeat
 
-- name: Enable elasticsearch
-  shell: metricbeat modules enable elasticsearch
-  become: yes
+# - name: Enable elasticsearch
+#   shell: metricbeat modules enable elasticsearch
+#   become: yes
 
-- name: Setup metricbeat command
-  shell: metricbeat setup
-  become: yes
+# - name: Setup metricbeat command
+#   shell: metricbeat setup
+#   become: yes
 
-- name: Start and enable metricbeat
-  service:
-    name: metricbeat
-    state: "{{ metricbeat_service_state }}"
-    enabled: "{{ metricbeat_service_enabled }}"
+# - name: Start and enable metricbeat
+#   service:
+#     name: metricbeat
+#     state: "{{ metricbeat_service_state }}"
+#     enabled: "{{ metricbeat_service_enabled }}"
