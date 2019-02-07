@@ -53,6 +53,9 @@
   when: elasticsearch_deployment_environment == 'production'
   notify: reload elastic daemon 
 
+- name: Force a restart if configuration has changed.
+  meta: flush_handlers
+
 - name: Make sure Elasticsearch is running before proceeding.
   wait_for:
     host: "{{ elasticsearch_network_host[0] }}"
