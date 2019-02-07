@@ -51,13 +51,7 @@
     src: override.conf
     dest: /etc/systemd/system/elasticsearch.service.d/override.conf
   when: elasticsearch_deployment_environment == 'production'
-
-- name: Reload elastic daemon
-  shell: systemctl daemon-reload
-  become: yes
-
-- name: Restart the machine
-  reboot:
+  notify: reload elastic daemon 
 
 - name: Make sure Elasticsearch is running before proceeding.
   wait_for:
