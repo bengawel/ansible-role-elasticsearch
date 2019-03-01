@@ -12,3 +12,5 @@ elasticsearch_network_host: localhost
 elasticsearch_http_port: 9200
 
 elasticsearch_deployment_environment: development
+
+jvm_heap_size_in_gb: 9
