@@ -23,17 +23,17 @@
   lineinfile:
     dest: /etc/elasticsearch/jvm.options
     regexp: '^-Xms(.*)$'
-    line: '-Xms10g'
+    line: '-Xms9g'
     backrefs: yes
-  notify: restart elasticsearch
+  notify: restart machine
 
 - name: Change JVM options for the heap size
   lineinfile:
     dest: /etc/elasticsearch/jvm.options
     regexp: '-Xmx(.*)$'
-    line: '-Xmx10g'
+    line: '-Xmx9g'
     backrefs: yes
-  notify: restart elasticsearch
+  notify: restart machine
 
 - name: Force a restart if configuration has changed.
   meta: flush_handlers
