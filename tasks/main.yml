@@ -25,6 +25,7 @@
     regexp: '^-Xms(.*)$'
     line: '-Xms9g'
     backrefs: yes
+  notify: restart elasticsearch
 
 - name: Change JVM options for the heap size
   lineinfile:
@@ -32,6 +33,7 @@
     regexp: '-Xmx(.*)$'
     line: '-Xmx9g'
     backrefs: yes
+  notify: restart elasticsearch
 
 - name: Force a restart if configuration has changed.
   meta: flush_handlers
