@@ -23,7 +23,7 @@
   lineinfile:
     dest: /etc/elasticsearch/jvm.options
     regexp: '^-Xms(.*)$'
-    line: '-Xms9g'
+    line: '-Xms10g'
     backrefs: yes
   notify: restart elasticsearch
 
@@ -31,7 +31,7 @@
   lineinfile:
     dest: /etc/elasticsearch/jvm.options
     regexp: '-Xmx(.*)$'
-    line: '-Xmx9g'
+    line: '-Xmx10g'
     backrefs: yes
   notify: restart elasticsearch
 
