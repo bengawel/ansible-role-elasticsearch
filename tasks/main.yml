@@ -23,14 +23,14 @@
   lineinfile:
     dest: /etc/elasticsearch/jvm.options
     regexp: '^-Xms(.*)$'
-    line: '-Xms6g'
+    line: '-Xms9g'
     backrefs: yes
 
 - name: Change JVM options for the heap size
   lineinfile:
     dest: /etc/elasticsearch/jvm.options
     regexp: '-Xmx(.*)$'
-    line: '-Xmx6g'
+    line: '-Xmx9g'
     backrefs: yes
 
 - name: Force a restart if configuration has changed.
